@@ -1,0 +1,102 @@
+/**
+ * Base Styles
+ * Global reset, typography, and base element styles
+ * 
+ * @author Senior Web Developer
+ * @version 1.0.0
+ */
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base Typography */
+body {
+  font-family: var(--font-family-primary);
+  background-color: var(--dark-navy);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--body-padding);
+}
+
+/* Responsive body padding adjustments */
+/* 320px - Very small phones (critical breakpoint) */
+@media (max-width: 320px) {
+  body {
+    padding: 10px;
+  }
+}
+
+/* 360px - Small phones */
+@media (min-width: 321px) and (max-width: 360px) {
+  body {
+    padding: 12px;
+  }
+}
+
+/* 375px - iPhone X/11/12 standard */
+@media (min-width: 361px) and (max-width: 375px) {
+  body {
+    padding: 15px;
+  }
+}
+
+/* 480px - Small tablets/large phones */
+@media (min-width: 376px) and (max-width: 480px) {
+  body {
+    padding: 18px;
+  }
+}
+
+/* 768px and up - Tablet and larger */
+@media (min-width: 481px) {
+  body {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* 1440px and up - Large desktop */
+@media (min-width: 1440px) {
+  body {
+    padding: 30px;
+  }
+}
+
+/* 1920px and up - Full HD */
+@media (min-width: 1920px) {
+  body {
+    padding: 40px;
+  }
+}
+
+/* 2560px and up - 4K/Ultra-wide */
+@media (min-width: 2560px) {
+  body {
+    padding: 50px;
+  }
+}
+
+/* Link Styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Accessibility - Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .contact-item,
+  .contact-item__icon-container,
+  .contact-item__copy-btn,
+  .social-button,
+  .qr-download-btn,
+  .qr-modal,
+  .modal__content {
+    transition: none;
+  }
+}

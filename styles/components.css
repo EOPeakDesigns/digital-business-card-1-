@@ -1,0 +1,1104 @@
+/**
+ * Component Styles
+ * Reusable component styles following BEM methodology
+ * 
+ * @author Senior Web Developer
+ * @version 1.0.0
+ */
+
+/* Profile Card Component */
+.card {
+  max-width: var(--card-max-width);
+  width: 100%;
+  /* Local background image with minimal overlay for maximum visibility */
+  background-image: 
+    linear-gradient(135deg, rgba(27, 38, 59, 0.2), rgba(15, 23, 42, 0.25)),
+    url('../assets/bacground.png');
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-blend-mode: multiply, normal;
+  background-color: rgba(27, 38, 59, 0.1);
+  /* Ensure background persists and is stable */
+  background-attachment: scroll;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  /* Performance optimizations for smooth rendering */
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card__content {
+  padding: var(--card-padding-vertical) var(--card-padding-horizontal);
+}
+
+/* Profile Header Component */
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.profile__info {
+  flex: 1;
+  min-width: 0; /* Allow flex item to shrink below content size */
+}
+
+.profile__name {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
+  color: var(--white);
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.2;
+}
+
+.profile__title {
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  color: var(--medium-gray);
+}
+
+.profile__image {
+  width: var(--profile-image-size);
+  height: var(--profile-image-size);
+  min-width: var(--profile-image-size);
+  min-height: var(--profile-image-size);
+  border-radius: var(--border-radius-full);
+  border: 3px solid var(--white);
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+  background-color: var(--light-gray);
+  flex-shrink: 0;
+}
+
+.profile__image:hover {
+  transform: scale(1.02);
+}
+
+/* Image loading optimization */
+.profile__image[loading="eager"] {
+  will-change: transform;
+}
+
+/* WebP image optimization - no fallback needed with eager loading */
+.profile__image[src$=".webp"] {
+  /* Image loads immediately with loading="eager" */
+}
+
+/* Section Header Component */
+.section-header {
+  background-color: var(--orange);
+  color: var(--white);
+  padding: var(--spacing-sm);
+  text-align: center;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  margin: var(--spacing-xl) calc(-1 * var(--card-padding-horizontal));
+  position: relative;
+}
+
+/* About Section Component */
+.about-content {
+  color: var(--light-gray);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  margin: var(--spacing-md) 0;
+}
+
+/* Contact Section Component */
+.contact-list {
+  list-style: none;
+  margin-top: var(--spacing-lg);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  margin-bottom: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-fast);
+  gap: var(--spacing-md);
+}
+
+.contact-item:hover {
+  background-color: rgba(244, 163, 45, 0.15);
+}
+
+.contact-item__icon-container {
+  width: var(--contact-icon-size);
+  height: var(--contact-icon-size);
+  background-color: var(--orange);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-item:hover .contact-item__icon-container {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-item__icon {
+  color: var(--white);
+  font-size: var(--font-size-xl);
+}
+
+.contact-link {
+  flex: 1;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  min-height: 44px; /* Minimum touch target size */
+  min-width: 0; /* Allow flex item to shrink below content size */
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  margin: calc(-1 * var(--spacing-xs)) calc(-1 * var(--spacing-sm));
+  position: relative;
+  /* Disable all hover effects and visual feedback */
+  transition: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+/* Completely disable hover effects on contact links */
+.contact-link:hover {
+  color: var(--white);
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.contact-link:focus {
+  /* No visual effects on focus - completely disabled */
+  background-color: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.contact-item__text {
+  color: var(--white);
+  font-size: var(--font-size-lg);
+  line-height: 1.4;
+  /* Disable text selection and visual effects */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+  cursor: inherit;
+  /* Text overflow handling for long emails/phone numbers */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  min-width: 0; /* Allow flex item to shrink below content size */
+}
+
+.contact-item__copy-btn {
+  background: none;
+  border: none;
+  color: var(--medium-gray);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  transition: all var(--transition-fast);
+  opacity: 0.7;
+  flex-shrink: 0;
+  min-width: 44px; /* Minimum touch target size */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-sm);
+}
+
+.contact-item__copy-btn:hover, 
+.contact-item__copy-btn:focus {
+  color: var(--white);
+  opacity: 1;
+  background-color: rgba(244, 163, 45, 0.1);
+}
+
+.contact-item__copy-btn:focus {
+  /* Focus handled by hover state - no visual frame needed */
+  background-color: rgba(244, 163, 45, 0.1);
+}
+
+/* Prevent persistent focus states after clicks */
+.contact-item__copy-btn:not(:focus) {
+  background-color: transparent;
+}
+
+/* Copy success feedback state */
+.contact-item__copy-btn.copied {
+  background-color: var(--orange);
+  color: var(--white);
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+  animation: copySuccessPulse 0.6s ease-in-out;
+}
+
+.contact-item__copy-btn.copied i {
+  animation: copySuccessIcon 0.4s ease-in-out;
+}
+
+/* Copy success button animation */
+@keyframes copySuccessPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: var(--shadow-sm);
+  }
+  30% {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+  }
+  60% {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* Copy success icon animation */
+@keyframes copySuccessIcon {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.3) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.contact-link:not(:focus) {
+  background-color: transparent;
+}
+
+/* Completely disable all visual effects on contact text elements */
+.contact-link:active,
+.contact-link:visited,
+.contact-link:link {
+  color: var(--white);
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Disable any inherited link styles */
+.contact-link * {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS - MOBILE FIRST
+   ======================================== */
+
+/* 320px - Very small phones (CRITICAL BREAKPOINT) */
+@media (max-width: 320px) {
+  :root {
+    --card-padding-horizontal: 15px;
+    --card-padding-vertical: 20px;
+    --profile-image-size: 70px;
+    --contact-icon-size: 32px;
+  }
+
+  .card {
+    max-width: 100%;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .profile {
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .profile__info {
+    text-align: center;
+    width: 100%;
+  }
+
+  .profile__name {
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .profile__title {
+    font-size: 12px;
+  }
+
+  .profile__image {
+    width: 70px;
+    height: 70px;
+    border-width: 2px;
+  }
+
+  .section-header {
+    font-size: 14px;
+    padding: 8px;
+    margin: var(--spacing-lg) calc(-1 * var(--card-padding-horizontal));
+  }
+
+  .about-content {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: var(--spacing-sm) 0;
+  }
+
+  .contact-item {
+    gap: 8px;
+    padding: 8px 0;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+
+  .contact-item__icon-container {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px; /* Slight offset to align with first line of text */
+  }
+
+  .contact-item__icon {
+    font-size: 14px;
+  }
+
+  .contact-item__text {
+    font-size: 13px;
+    line-height: 1.3;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    padding-top: 2px; /* Align text baseline with icon/copy button */
+  }
+
+  .contact-item__copy-btn {
+    min-width: 32px;
+    min-height: 32px;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    align-self: flex-start;
+    margin-top: 2px; /* Match icon container margin for perfect alignment */
+    flex-shrink: 0;
+  }
+
+  .contact-link {
+    min-height: 32px;
+    padding: 4px 6px;
+    margin: calc(-1 * 4px) calc(-1 * 6px);
+    align-items: flex-start;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .social-buttons {
+    gap: 4px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+  .social-button {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    min-height: 34px;
+    max-height: 34px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    box-sizing: border-box;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--orange);
+    color: var(--white);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .social-button i {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .footer {
+    margin-top: var(--spacing-lg);
+  }
+
+  .modal__content {
+    width: 95%;
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+
+  .modal__header {
+    padding: 12px;
+  }
+
+  .modal__title {
+    font-size: 16px;
+  }
+
+  .modal__body {
+    padding: 15px;
+  }
+
+  .qr-code-image {
+    width: 160px;
+    height: 160px;
+  }
+
+  .qr-download-btn {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+}
+
+/* 360px - Small phones */
+@media (min-width: 321px) and (max-width: 360px) {
+  :root {
+    --card-padding-horizontal: 18px;
+    --card-padding-vertical: 22px;
+    --profile-image-size: 80px;
+    --contact-icon-size: 36px;
+  }
+
+  .profile__name {
+    font-size: 24px;
+  }
+
+  .profile__title {
+    font-size: 13px;
+  }
+
+  .profile__image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .section-header {
+    font-size: 16px;
+    margin: var(--spacing-xl) calc(-1 * var(--card-padding-horizontal));
+  }
+
+  .about-content {
+    font-size: 14px;
+  }
+
+  .contact-item {
+    gap: 10px;
+  }
+  
+  .contact-item__icon-container {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-item__icon {
+    font-size: 15px;
+  }
+
+  .contact-item__text {
+    font-size: 14px;
+  }
+
+  .contact-item__copy-btn {
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .contact-link {
+    min-height: 36px;
+  }
+
+  .social-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .social-button i {
+    font-size: 15px;
+  }
+
+  .qr-code-image {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+/* 375px - iPhone X/11/12 standard */
+@media (min-width: 361px) and (max-width: 375px) {
+  :root {
+    --card-padding-horizontal: 20px;
+    --card-padding-vertical: 23px;
+  }
+
+  .profile__name {
+    font-size: 25px;
+  }
+
+  .section-header {
+    font-size: 17px;
+  }
+
+  .about-content {
+    font-size: 14px;
+  }
+
+  .contact-item__text {
+    font-size: 15px;
+  }
+}
+
+/* 480px - Small tablets/large phones */
+@media (min-width: 376px) and (max-width: 480px) {
+  :root {
+    --card-padding-horizontal: 25px;
+    --card-padding-vertical: 24px;
+    --profile-image-size: 85px;
+    --contact-icon-size: 40px;
+  }
+
+  .profile__name {
+    font-size: 26px;
+  }
+
+  .profile__title {
+    font-size: 13px;
+  }
+
+  .profile__image {
+    width: 85px;
+    height: 85px;
+  }
+
+  .section-header {
+    font-size: 17px;
+  }
+
+  .contact-item {
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-xs);
+  }
+
+  .contact-item__icon-container {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .contact-item__icon {
+    font-size: var(--font-size-lg);
+  }
+  
+  .contact-item__text {
+    font-size: var(--font-size-base);
+  }
+  
+  .contact-item__copy-btn {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 6px;
+  }
+  
+  .contact-link {
+    min-height: 40px;
+    padding: 6px var(--spacing-xs);
+    margin: calc(-1 * 6px) calc(-1 * var(--spacing-xs));
+  }
+
+  .social-buttons {
+    gap: var(--spacing-sm);
+  }
+
+  .social-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .social-button i {
+    font-size: var(--font-size-base);
+  }
+
+  .modal__content {
+    width: 92%;
+  }
+
+  .qr-code-image {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+
+/* Footer Component */
+.footer {
+  text-align: center;
+  margin-top: var(--spacing-2xl);
+}
+
+/* Social Media Buttons */
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.social-button {
+  width: 48px;
+  height: 48px;
+  background-color: var(--orange);
+  color: var(--white);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.social-button:hover,
+.social-button:focus {
+  background-color: var(--orange-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  outline: none;
+}
+
+.social-button:focus {
+  /* Focus handled by hover state - no visual frame needed */
+}
+
+.social-button i {
+  font-size: var(--font-size-lg);
+}
+
+/* ========================================
+   TOUCH DEVICE HOVER DISABLING
+   Disable hover effects for touch devices (≤768px)
+   ======================================== */
+@media (max-width: 768px) {
+  /* Disable contact item hover effects */
+  .contact-item:hover {
+    background-color: transparent;
+  }
+
+  .contact-item:hover .contact-item__icon-container {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Disable contact item icon container transitions on touch devices */
+  .contact-item__icon-container {
+    transition: none;
+  }
+
+  /* Disable contact item transitions on touch devices */
+  .contact-item {
+    transition: none;
+  }
+
+  /* Ensure contact link hover remains disabled on touch devices */
+  .contact-link:hover {
+    color: var(--white);
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    transform: none;
+  }
+
+  /* Disable copy button hover effects */
+  .contact-item__copy-btn:hover,
+  .contact-item__copy-btn:focus {
+    color: var(--medium-gray);
+    opacity: 0.7;
+    background-color: transparent;
+    transform: none;
+  }
+
+  /* Disable copy button transitions on touch devices */
+  .contact-item__copy-btn {
+    transition: none;
+  }
+
+  /* Ensure copy success state (.copied) works on touch devices */
+  /* This must have higher specificity to override the disabled transitions */
+  .contact-item__copy-btn.copied {
+    background-color: var(--orange) !important;
+    color: var(--white) !important;
+    opacity: 1 !important;
+    transform: scale(1.05) !important;
+    box-shadow: var(--shadow-lg) !important;
+    /* Allow animation even when transitions are disabled */
+    animation: copySuccessPulse 0.6s ease-in-out !important;
+  }
+
+  .contact-item__copy-btn.copied i {
+    animation: copySuccessIcon 0.4s ease-in-out !important;
+  }
+
+  /* Disable social button hover effects */
+  .social-button:hover,
+  .social-button:focus {
+    background-color: var(--orange);
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Disable social button transitions on touch devices */
+  .social-button {
+    transition: none;
+  }
+
+  /* Disable QR download button hover effects - using !important to ensure override */
+  .qr-download-btn:hover,
+  .qr-download-btn:focus {
+    background-color: var(--orange) !important;
+    transform: none !important;
+    box-shadow: var(--shadow-sm) !important;
+    outline: none !important;
+  }
+
+  /* Disable QR download button transitions on touch devices */
+  .qr-download-btn {
+    transition: none !important;
+  }
+}
+
+/* 768px - Tablet portrait */
+@media (min-width: 481px) and (max-width: 768px) {
+  .card {
+    max-width: 450px;
+  }
+
+  .profile__name {
+    font-size: 27px;
+  }
+
+  .section-header {
+    font-size: 18px;
+  }
+
+  .modal__content {
+    max-width: 450px;
+  }
+}
+
+/* 1024px - Tablet landscape / Small desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .card {
+    max-width: 480px;
+  }
+
+  .profile__name {
+    font-size: var(--font-size-2xl);
+  }
+
+  .modal__content {
+    max-width: 480px;
+  }
+}
+
+/* 1440px - Large desktop */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .card {
+    max-width: var(--card-max-width);
+  }
+}
+
+/* 1920px - Full HD */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .card {
+    max-width: 450px;
+  }
+
+  .card__content {
+    padding: 35px 30px;
+  }
+
+  .profile__name {
+    font-size: 30px;
+  }
+
+  .section-header {
+    font-size: 20px;
+  }
+}
+
+/* 2560px - 4K / Ultra-wide */
+@media (min-width: 1921px) {
+  .card {
+    max-width: 500px;
+  }
+
+  .card__content {
+    padding: 40px 35px;
+  }
+
+  .profile__name {
+    font-size: 32px;
+  }
+
+  .profile__title {
+    font-size: 16px;
+  }
+
+  .profile__image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .section-header {
+    font-size: 22px;
+    padding: 12px;
+  }
+
+  .about-content {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .contact-item__text {
+    font-size: 17px;
+  }
+
+  .contact-item__icon-container {
+    width: 46px;
+    height: 46px;
+  }
+
+  .contact-item__icon {
+    font-size: 20px;
+  }
+  
+  .social-button {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .social-button i {
+    font-size: 20px;
+  }
+
+  .modal__content {
+    max-width: 550px;
+  }
+
+  .modal__title {
+    font-size: 24px;
+  }
+
+  .qr-code-image {
+    width: 220px;
+    height: 220px;
+  }
+
+  .qr-download-btn {
+    padding: 14px 24px;
+    font-size: 17px;
+  }
+}
+
+/* QR Code Button */
+.qr-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.qr-button:focus {
+  /* Focus handled by hover state - no visual frame needed */
+}
+
+/* QR Code Modal */
+.qr-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.qr-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.modal__content {
+  position: relative;
+  background-color: var(--dark-navy);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  max-width: 400px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: transform var(--transition-normal);
+}
+
+.qr-modal.active .modal__content {
+  transform: scale(1);
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal__title {
+  color: var(--white);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+.modal__close {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.modal__close:hover,
+.modal__close:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.modal__close:focus {
+  box-shadow: 0 0 0 2px var(--orange);
+}
+
+.modal__body {
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.qr-code-container {
+  margin-bottom: var(--spacing-xl);
+}
+
+.qr-code-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.qr-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.qr-download-btn {
+  background-color: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.qr-download-btn:hover,
+.qr-download-btn:focus {
+  background-color: var(--orange-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Focus styles for desktop - disabled on touch devices via media query */
+.qr-download-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(244, 163, 45, 0.3);
+}
+
+.qr-download-btn i {
+  font-size: var(--font-size-sm);
+}
+
+/* QR Modal responsive adjustments are handled in breakpoint sections above */

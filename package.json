@@ -1,0 +1,47 @@
+{
+  "name": "digital-business-card",
+  "version": "1.0.0",
+  "description": "A modern, responsive digital business card with component-based architecture",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server --port=3000 --open=/index.html",
+    "build": "echo 'No build process required - static files only'",
+    "favicons": "node scripts/generate-favicons.cjs",
+    "test": "echo 'No tests specified'",
+    "lint:css": "stylelint \"styles/**/*.css\"",
+    "lint:js": "eslint \"scripts/**/*.js\"",
+    "lint": "npm run lint:css && npm run lint:js"
+  },
+  "keywords": [
+    "digital-business-card",
+    "responsive",
+    "vanilla-js",
+    "component-based",
+    "accessibility",
+    "mobile-first"
+  ],
+  "author": "Senior Web Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "live-server": "^1.2.2",
+    "serve": "^14.0.0",
+    "sharp": "^0.34.0",
+    "stylelint": "^15.0.0",
+    "stylelint-config-standard": "^34.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/digital-business-card.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/digital-business-card/issues"
+  },
+  "homepage": "https://github.com/username/digital-business-card#readme"
+}
