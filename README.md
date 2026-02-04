@@ -111,9 +111,19 @@ npm run start
 # Regenerate favicon PNGs from assets/favicon.svg
 npm run favicons
 
+# Create a production-ready static output in /public (Vercel-friendly)
+npm run build
+
 # Lint CSS + JS
 npm run lint
 ```
+
+## Deploy to Vercel (recommended settings)
+
+This repo generates a static output folder at `public/`.
+
+- **Build Command**: `npm run build`
+- **Output Directory**: `public`
 
 ## Customization guide
 

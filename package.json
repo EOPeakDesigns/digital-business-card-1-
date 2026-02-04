@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npx serve .",
     "dev": "npx live-server --port=3000 --open=/index.html",
-    "build": "echo 'No build process required - static files only'",
+    "build": "node scripts/build.cjs",
+    "vercel-build": "npm run build",
     "favicons": "node scripts/generate-favicons.cjs",
     "test": "echo 'No tests specified'",
     "lint:css": "stylelint \"styles/**/*.css\"",
