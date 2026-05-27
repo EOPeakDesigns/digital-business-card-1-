@@ -2,11 +2,12 @@
  * Service worker — app shell cache for digital business card.
  * Bump CACHE_NAME when shell assets change.
  */
-const CACHE_NAME = 'dbc-shell-v3';
+const CACHE_NAME = 'dbc-shell-v4';
 
 const SHELL = [
   './',
   './index.html',
+  './site.webmanifest',
   './styles/main.css',
   './styles/variables.css',
   './styles/base.css',

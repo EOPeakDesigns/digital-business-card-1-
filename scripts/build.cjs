@@ -34,6 +34,7 @@ async function cleanDir(dir) {
 async function copyIntoPublic(rootDir, publicDir) {
   const entries = [
     { src: "index.html", dest: "index.html" },
+    { src: "site.webmanifest", dest: "site.webmanifest" },
     { src: "sw.js", dest: "sw.js" },
     { src: "data", dest: "data" },
     { src: "assets", dest: "assets" },
