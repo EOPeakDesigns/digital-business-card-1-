@@ -109,7 +109,14 @@ html[dir="rtl"] .modal__close {
 }
 
 html[dir="rtl"] .install-banner {
+  right: max(14px, env(safe-area-inset-right));
+  left: auto;
+  transform-origin: bottom right;
   text-align: start;
+}
+
+html[dir="rtl"] .install-banner__head {
+  flex-direction: row-reverse;
 }
 
 html[dir="rtl"] .install-banner__actions {

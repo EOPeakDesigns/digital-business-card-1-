@@ -289,47 +289,87 @@
 
 .install-banner {
   position: fixed;
-  left: max(12px, env(safe-area-inset-left));
-  right: max(12px, env(safe-area-inset-right));
-  bottom: max(12px, env(safe-area-inset-bottom));
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  left: auto;
   z-index: 120;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md);
-  border-radius: var(--border-radius-md);
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  width: min(320px, calc(100vw - 28px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+  max-width: 320px;
+  padding: 14px 16px;
+  border-radius: 14px;
   background: var(--surface-elevated);
   color: var(--text-primary);
-  box-shadow: var(--shadow-md);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.35),
+    0 0 0 1px var(--border-subtle);
   border: 1px solid var(--border-subtle);
+  transform-origin: bottom right;
+  animation: install-banner-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .install-banner[hidden] {
   display: none !important;
 }
 
+.install-banner__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.install-banner__icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(145deg, var(--orange) 0%, var(--orange-hover) 100%);
+  color: var(--white);
+  box-shadow: 0 3px 10px rgba(244, 163, 45, 0.32);
+}
+
+.install-banner__icon i {
+  font-size: 16px;
+}
+
 .install-banner__text {
-  flex: 1 1 200px;
+  flex: 1;
+  min-width: 0;
   font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.45;
   margin: 0;
+  padding-top: 2px;
 }
 
 .install-banner__actions {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: 8px;
+  width: 100%;
 }
 
 .install-banner__btn {
+  flex: 1;
   min-height: 44px;
-  padding: 0 14px;
-  border-radius: var(--border-radius-sm);
+  padding: 0 12px;
+  border-radius: 10px;
   border: 1px solid var(--border-subtle);
   background: transparent;
   color: var(--text-primary);
   cursor: pointer;
   font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .install-banner__btn--primary {
@@ -338,9 +378,40 @@
   color: var(--white);
 }
 
+.install-banner__btn--primary:hover {
+  background: var(--orange-hover);
+  border-color: var(--orange-hover);
+}
+
+.install-banner__btn:active {
+  transform: scale(0.98);
+}
+
 .install-banner__btn:focus-visible {
   outline: 3px solid var(--orange);
   outline-offset: 2px;
+}
+
+@keyframes install-banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .install-banner {
+    animation: none;
+  }
+
+  .install-banner__btn:active {
+    transform: none;
+  }
 }
 
 .modal__content--video {

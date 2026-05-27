@@ -90,8 +90,13 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <aside class="install-banner" id="install-banner" hidden>
-    <p class="install-banner__text" id="install-banner-text"></p>
+  <aside class="install-banner" id="install-banner" hidden aria-live="polite">
+    <div class="install-banner__head">
+      <span class="install-banner__icon" aria-hidden="true">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+      </span>
+      <p class="install-banner__text" id="install-banner-text"></p>
+    </div>
     <div class="install-banner__actions">
       <button type="button" class="install-banner__btn install-banner__btn--primary" id="install-accept"></button>
       <button type="button" class="install-banner__btn" id="install-dismiss"></button>
