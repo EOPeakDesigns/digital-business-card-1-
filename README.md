@@ -10,7 +10,7 @@ A production-ready, mobile-first digital business card built with vanilla HTML, 
 
 Replace with your deployed URL after publishing:
 
-`https://digital-business-card-1-git-main-eopeaks-projects.vercel.app/`
+`https://your-project.vercel.app`
 
 ---
 
