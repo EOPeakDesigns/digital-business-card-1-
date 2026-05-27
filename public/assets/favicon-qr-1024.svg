@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Background circle with orange color matching digital card -->
+  <circle cx="512" cy="512" r="512" fill="#F4A32D"/>
+  
+  <!-- Initials "AM" in white, centered and scaled appropriately -->
+  <text x="512" y="704" 
+        font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif" 
+        font-size="448" 
+        font-weight="700" 
+        text-anchor="middle" 
+        fill="#FFFFFF" 
+        letter-spacing="16px">
+    AM
+  </text>
+</svg>
+

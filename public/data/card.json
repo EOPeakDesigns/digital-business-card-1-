@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "canonicalHost": "https://alexmartinez.dev",
+    "ogImage": "assets/owner.webp",
+    "defaultLocale": "en"
+  },
+  "person": {
+    "name": "Alexander Martinez",
+    "nameDisplay": "ALEXANDER MARTINEZ",
+    "nameDisplayAr": "ألكسندر مارتينيز",
+    "title": "Senior Sales Manager",
+    "titleAr": "مدير مبيعات أول",
+    "eyebrow": "Sales & Strategic Partnerships",
+    "eyebrowAr": "المبيعات والشراكات الاستراتيجية",
+    "org": "Alexander Martinez",
+    "avatar": ["assets/owner.webp"],
+    "qrImage": "assets/MYQR.png",
+    "bio": {
+      "en": "With over 20 years of experience in sales management, I specialize in building high-performing sales teams and developing strategic partnerships that drive revenue growth. I lead cross-functional teams and architect sales strategies that deliver exceptional results and exceed business objectives.",
+      "ar": "بخبرة تتجاوز 20 عاماً في إدارة المبيعات، أتخصص في بناء فرق مبيعات عالية الأداء وتطوير شراكات استراتيجية تحقق نمو الإيرادات. أقود فرقاً متعددة التخصصات وأصمم استراتيجيات مبيعات تقدم نتائج استثنائية تتجاوز أهداف العمل."
+    }
+  },
+  "contact": {
+    "phone": {
+      "display": "+1 (555) 123-4567",
+      "tel": "+15551234567"
+    },
+    "whatsapp": {
+      "display": "+1 (555) 123-4567",
+      "number": "15551234567"
+    },
+    "email": "alex.martinez@gmail.com",
+    "website": {
+      "display": "alexmartinez.dev",
+      "url": "https://alexmartinez.dev"
+    },
+    "address": {
+      "display": "",
+      "mapsUrl": ""
+    }
+  },
+  "socials": [
+    { "id": "facebook", "icon": "fa-brands fa-facebook-f", "url": "https://facebook.com/alexmartinez.dev", "labelKey": "socialFacebook" },
+    { "id": "instagram", "icon": "fa-brands fa-instagram", "url": "https://instagram.com/alexmartinez.dev", "labelKey": "socialInstagram" },
+    { "id": "linkedin", "icon": "fa-brands fa-linkedin-in", "url": "https://linkedin.com/in/alexmartinez-dev", "labelKey": "socialLinkedIn" },
+    { "id": "x", "icon": "fa-brands fa-x-twitter", "url": "https://x.com/alexmartinez_dev", "labelKey": "socialX" }
+  ],
+  "featureVideo": {
+    "enabled": true,
+    "type": "embed",
+    "embedUrl": "https://vimeo.com/76979871",
+    "localSrc": "",
+    "poster": "assets/owner.webp"
+  },
+  "labels": {
+    "en": {
+      "skipToContent": "Skip to main content",
+      "aboutHeading": "About me",
+      "contactHeading": "Get in touch",
+      "saveContact": "Save contact",
+      "shareCard": "Share card",
+      "installApp": "Add to Home Screen",
+      "installDismiss": "Not now",
+      "phoneLabel": "Call",
+      "whatsappLabel": "WhatsApp",
+      "emailLabel": "Email",
+      "websiteLabel": "Website",
+      "addressLabel": "Directions",
+      "copyPhone": "Copy phone number",
+      "copyEmail": "Copy email address",
+      "qrTitle": "Scan to connect",
+      "qrDownload": "Download QR Code",
+      "qrClose": "Close QR Code modal",
+      "qrAlt": "QR Code for Alexander Martinez's digital business card",
+      "socialFacebook": "Visit Facebook profile",
+      "socialInstagram": "Visit Instagram profile",
+      "socialLinkedIn": "Visit LinkedIn profile",
+      "socialX": "Visit X profile",
+      "viewQr": "View QR Code",
+      "copiedPhone": "Phone number copied",
+      "copiedEmail": "Email copied",
+      "copyFailed": "Could not copy",
+      "vcardDownloading": "Downloading contact card",
+      "shareCopied": "Link copied to clipboard",
+      "shareFailed": "Could not share",
+      "langToggle": "Switch to Arabic",
+      "langShort": "العربية",
+      "videoCta": "Executive intro",
+      "videoEyebrow": "Executive intro · 60 sec",
+      "videoTitle": "Partnerships that compound",
+      "videoCaption": "How I lead discovery, align decision-makers, and convert trust into pipeline you can measure.",
+      "videoClose": "Close executive intro",
+      "playOnAvatar": "Play 60-second executive intro"
+    },
+    "ar": {
+      "skipToContent": "انتقل إلى المحتوى الرئيسي",
+      "aboutHeading": "نبذة عني",
+      "contactHeading": "تواصل معي",
+      "saveContact": "حفظ جهة الاتصال",
+      "shareCard": "مشاركة البطاقة",
+      "installApp": "إضافة إلى الشاشة الرئيسية",
+      "installDismiss": "ليس الآن",
+      "phoneLabel": "اتصال",
+      "whatsappLabel": "واتساب",
+      "emailLabel": "بريد إلكتروني",
+      "websiteLabel": "الموقع",
+      "addressLabel": "الموقع على الخريطة",
+      "copyPhone": "نسخ رقم الهاتف",
+      "copyEmail": "نسخ البريد الإلكتروني",
+      "qrTitle": "امسح للتواصل",
+      "qrDownload": "تنزيل رمز QR",
+      "qrClose": "إغلاق نافذة QR",
+      "qrAlt": "رمز QR لبطاقة ألكسندر مارتينيز الرقمية",
+      "socialFacebook": "زيارة حساب فيسبوك",
+      "socialInstagram": "زيارة حساب إنستغرام",
+      "socialLinkedIn": "زيارة حساب لينكدإن",
+      "socialX": "زيارة حساب X",
+      "viewQr": "عرض رمز QR",
+      "copiedPhone": "تم نسخ رقم الهاتف",
+      "copiedEmail": "تم نسخ البريد الإلكتروني",
+      "copyFailed": "تعذر النسخ",
+      "vcardDownloading": "جاري تنزيل بطاقة الاتصال",
+      "shareCopied": "تم نسخ الرابط",
+      "shareFailed": "تعذر المشاركة",
+      "langToggle": "Switch to English",
+      "langShort": "English",
+      "videoCta": "تعريف تنفيذي",
+      "videoEyebrow": "تعريف تنفيذي · 60 ثانية",
+      "videoTitle": "شراكات تبني قيمة مستدامة",
+      "videoCaption": "كيف أقود مرحلة الاكتشاف، أوائم صناع القرار، وأحوّل الثقة إلى نتائج يمكن قياسها.",
+      "videoClose": "إغلاق التعريف التنفيذي",
+      "playOnAvatar": "تشغيل التعريف التنفيذي (60 ثانية)"
+    }
+  }
+}

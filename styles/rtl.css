@@ -1,0 +1,125 @@
+/**
+ * Arabic (RTL) typography and layout polish
+ */
+
+html.locale-ar {
+  --font-family-primary: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+html.locale-ar body {
+  font-family: var(--font-family-primary);
+}
+
+html.locale-ar .profile__name {
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.35;
+  font-size: clamp(22px, 5.5vw, 28px);
+}
+
+html.locale-ar .profile__title {
+  font-style: normal;
+  line-height: 1.5;
+}
+
+html.locale-ar .profile__eyebrow {
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.5;
+}
+
+html.locale-ar .about-content {
+  line-height: 1.85;
+  text-align: start;
+}
+
+html.locale-ar .section-header {
+  letter-spacing: 0;
+  font-weight: var(--font-weight-bold);
+}
+
+html.locale-ar .contact-item__text {
+  text-align: start;
+}
+
+html.locale-ar .contact-item__text[dir="ltr"] {
+  text-align: end;
+  unicode-bidi: plaintext;
+}
+
+html[dir="rtl"] .skip-link {
+  left: auto;
+  right: max(12px, env(safe-area-inset-right));
+}
+
+html[dir="rtl"] .skip-link:focus-visible {
+  right: max(12px, env(safe-area-inset-right));
+}
+
+/* RTL: name block on the right, photo on the left (natural flex row + dir=rtl) */
+html[dir="rtl"] .profile {
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+html[dir="rtl"] .profile__info {
+  order: 1;
+  flex: 1;
+  min-width: 0;
+  text-align: start;
+}
+
+html[dir="rtl"] .profile__media {
+  order: 2;
+  flex-shrink: 0;
+}
+
+html[dir="rtl"] .profile__play-overlay {
+  right: auto;
+  left: 0;
+  transform: translate(-22%, 22%);
+}
+
+/* Keep side-by-side on small phones in Arabic (avoid stacked centered layout) */
+@media (max-width: 480px) {
+  html[dir="rtl"] .profile {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    text-align: start;
+  }
+
+  html[dir="rtl"] .profile__info {
+    width: auto;
+    text-align: start;
+  }
+}
+
+html[dir="rtl"] .contact-item {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .modal__header {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .modal__close {
+  margin-inline: auto 0;
+}
+
+html[dir="rtl"] .install-banner {
+  text-align: start;
+}
+
+html[dir="rtl"] .install-banner__actions {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .qr-download-btn {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .toast {
+  direction: rtl;
+}

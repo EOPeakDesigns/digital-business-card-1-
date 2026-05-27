@@ -1,159 +1,192 @@
-# Digital Business Card (Client-Ready Static Web Card)
+# Digital Business Card — Freelancer Showcase
 
-A modern, responsive digital business card built with vanilla HTML/CSS/JS. It’s designed to load fast, look premium on any screen, and give prospects instant ways to contact you, view your QR code, and share your professional presence.
+A production-ready, mobile-first digital business card built with vanilla HTML, CSS, and JavaScript. Designed as a portfolio piece and client deliverable: fast to load, polished on smartphones, bilingual (EN/AR), and deployable to Vercel in minutes.
 
-## Why order this service (business value)
+> **Portfolio blurb (149 chars):** see [`SHOWCASE_DESCRIPTION.md`](SHOWCASE_DESCRIPTION.md)
 
-You’re not buying “a webpage”. You’re buying a conversion-focused micro‑product that helps you:
+---
 
-- **Get contacted faster**: one tap from a phone to WhatsApp/email/website.
-- **Increase trust**: professional presentation, consistent branding, and clean UI.
-- **Work everywhere**: mobile-first responsive layout that fits small phones through large desktops.
-- **Share instantly**: QR code users can scan and open in seconds.
-- **Look professional on every platform**: proper favicons + PWA icons for browsers and mobile home screens.
+## Live demo
 
-## What this digital business card includes (features)
+Replace with your deployed URL after publishing:
 
-### Core sections
-- **Profile header**: name, title, profile image.
-- **About section**: short professional summary.
-- **Contact section**:
-  - WhatsApp chat link
-  - Email link (opens Gmail compose in a new tab)
-  - Website link
-  - **Copy-to-clipboard** buttons for phone and email (with visual success feedback)
-- **Social links**: Facebook, Instagram, LinkedIn, X.
+`https://your-project.vercel.app`
 
-### QR and sharing
-- **QR modal**: opens from the QR button.
-- **Download QR**: downloads the QR image for printing on cards, flyers, packaging, etc.
+---
 
-### UX, UI and build quality
-- **Mobile-first responsive design** with extensive breakpoint coverage.
-- **Touch-friendly targets** (comfortably tappable controls).
-- **Semantic HTML + ARIA labels** across interactive elements.
-- **Reduced motion support** via `prefers-reduced-motion`.
-- **Safe external links**: `rel="noopener noreferrer"` where needed.
+## Why this project stands out
 
-### Brand and platform readiness
-- **Full favicon set**: SVG/PNG/ICO + Apple touch icon.
-- **PWA manifest** (`assets/site.webmanifest`) with Android icons (192/512).
+| Area | What you get |
+|------|----------------|
+| **Mobile UX** | Touch-friendly controls, safe-area padding, `100dvh` layout, breakpoints from 320px up |
+| **Conversion** | One-tap call, WhatsApp, email, website, copy phone/email, vCard download, Web Share |
+| **Trust** | QR modal + download, owner showcase video, semantic HTML, ARIA labels, focus management |
+| **Global reach** | English / Arabic with RTL layout polish and Noto Sans Arabic |
+| **Platform-ready** | PWA manifest, install banner, service worker offline shell, full favicon set |
+| **Maintainability** | Single source of truth in `data/card.json` — no scattered HTML edits |
 
-## Optional upgrades (common client add-ons)
+---
 
-These are not currently included, but are common “pro” additions to digital business cards:
+## Feature checklist
 
-- **vCard (.vcf) / Add to Contacts** button
-- **Standard `tel:` / `mailto:` actions** (instead of WhatsApp-only / Gmail-only)
-- **Web Share button** (native share sheet on mobile)
-- **Analytics** (privacy-friendly click tracking)
-- **Multi-language (i18n)** versions
-- **Booking link** (Calendly), address/map CTA, company logo, portfolio section
-- **Hosting + custom domain + SSL** setup
+- Profile header with optional avatar video trigger (embed or local MP4)
+- About + contact sections rendered from JSON
+- Social links + QR code modal (view & download)
+- Utility actions: **Save contact (vCard)**, **Share card**, **EN / عربي** language toggle
+- Toast feedback for copy/share actions
+- SEO meta tags updated at runtime from `card.json`
+- Service worker cache for repeat visits and flaky networks
+- Lint pipeline (ESLint + Stylelint) and Vercel build script
+
+---
+
+## Tech stack
+
+- **HTML5** — semantic structure, skip link, dialog modals
+- **CSS3** — design tokens, BEM components, RTL stylesheet, reduced-motion support
+- **Vanilla JS (ES modules)** — no framework dependency
+- **Font Awesome 6** — icons (CDN)
+- **Google Fonts** — Noto Sans Arabic
+- **Node.js (dev only)** — build, favicon generation, lint
+
+---
 
 ## Project structure
 
 ```
-├── index.html                     # Main HTML document
+├── index.html              # App shell + modals
+├── data/card.json          # Content, links, labels (EN/AR), video config
+├── sw.js                   # Service worker (offline shell)
+├── vercel.json             # Deploy settings + security headers
 ├── styles/
-│   ├── main.css                   # Imports the stylesheets below
-│   ├── variables.css              # Design tokens (CSS custom properties)
-│   ├── base.css                   # Reset + base styles
-│   └── components.css             # Component styling (BEM)
+│   ├── main.css            # Imports all stylesheets
+│   ├── variables.css       # Design tokens
+│   ├── base.css            # Reset, layout, touch polish
+│   ├── components.css      # Card, profile, contact, modals
+│   ├── utilities.css       # Utility bar, toast, video modal
+│   └── rtl.css             # Arabic RTL overrides
 ├── scripts/
-│   ├── app.js                     # App bootstrap
-│   ├── generate-favicons.cjs       # SVG → PNG icon generator
-│   ├── components/
-│   │   ├── ProfileCard.js
-│   │   ├── ContactItem.js
-│   │   ├── SocialButtons.js
-│   │   ├── QRModal.js
-│   │   └── Toast.js               # Available component (not wired by default)
-│   └── utils/
-│       ├── clipboard.js
-│       ├── accessibility.js
-│       └── performance.js
-└── assets/
-    ├── favicon.svg
-    ├── favicon.ico
-    ├── favicon-16x16.png
-    ├── favicon-32x32.png
-    ├── apple-touch-icon.png
-    ├── android-chrome-192x192.png
-    ├── android-chrome-512x512.png
-    ├── site.webmanifest
-    ├── owner.webp
-    ├── MYQR.png
-    └── bacground.png
+│   ├── app.js              # Bootstrap
+│   ├── build.cjs           # Copies site → public/
+│   ├── components/         # QRModal, VideoModal, Toast, etc.
+│   ├── handlers/           # render, vCard, share, PWA, i18n
+│   └── utils/              # cardData, modal, video, clipboard
+└── assets/                 # Images, favicons, manifest, QR
 ```
 
-## Getting started
+---
 
-This is a static project (no build step required).
-
-- **Open directly**: double-click `index.html`
-- **Recommended (local server)**:
+## Quick start (local)
 
 ```bash
 npm install
 npm run dev
 ```
 
-Or:
+Opens at `http://localhost:3000`. For a static server without live reload:
 
 ```bash
 npm run start
 ```
 
-## Developer commands
+---
 
-```bash
-# Regenerate favicon PNGs from assets/favicon.svg
-npm run favicons
+## Customize for a client (or your portfolio)
 
-# Create a production-ready static output in /public (Vercel-friendly)
-npm run build
+Edit **`data/card.json`** only for most changes:
 
-# Lint CSS + JS
-npm run lint
+| Section | Purpose |
+|---------|---------|
+| `person` | Name, title, bio, avatar, QR image |
+| `contact` | Phone, WhatsApp, email, website |
+| `socials` | Social profile URLs |
+| `featureVideo` | Owner intro video (`embedUrl` or `localSrc`) |
+| `labels.en` / `labels.ar` | All UI strings |
+| `meta.canonicalHost` | Production URL for SEO / sharing |
+
+Replace assets:
+
+- `assets/owner.webp` — profile photo
+- `assets/MYQR.png` — QR code
+- `assets/bacground.png` — card background
+- `assets/favicon.svg` — brand icon (run `npm run favicons` to regenerate PNGs)
+
+Brand colors: `styles/variables.css`
+
+---
+
+## Deploy to Vercel (recommended)
+
+1. Push the project to GitHub (exclude `node_modules/` and `public/` — both are gitignored).
+2. Import the repo in [Vercel](https://vercel.com).
+3. Settings are preconfigured in `vercel.json`:
+   - **Build command:** `npm run build`
+   - **Output directory:** `public`
+4. Deploy. Update `meta.canonicalHost` in `card.json` to your live domain.
+
+### What to commit
+
+```
+index.html, sw.js, vercel.json, package.json, package-lock.json
+data/, styles/, scripts/, assets/
+.eslintrc.cjs, .stylelintrc.json, .gitignore
+README.md, SHOWCASE_DESCRIPTION.md
 ```
 
-## Deploy to Vercel (recommended settings)
+Do **not** commit `node_modules/` or `public/` (Vercel builds `public/` on each deploy).
 
-This repo generates a static output folder at `public/`.
+---
 
-- **Build Command**: `npm run build`
-- **Output Directory**: `public`
+## Quality commands
 
-## Customization guide
+```bash
+npm run lint      # CSS + JS lint
+npm run build     # Output production site to public/
+npm run favicons  # Regenerate PNG/ICO from assets/favicon.svg
+```
 
-### Update content
-- **Edit copy + links** in `index.html` (name/title/about/contact/social URLs).
-- **Replace images**:
-  - Profile image: `assets/owner.webp`
-  - QR code image: `assets/MYQR.png`
-  - Background: `assets/bacground.png`
+---
 
-### Update branding (colors/spacing/type)
-Edit design tokens in `styles/variables.css`.
+## Smartphone readiness
 
-### Favicons and PWA icons
-- Source of truth: `assets/favicon.svg`
-- Regenerate derived PNGs: `npm run favicons`
-- `index.html` and `assets/site.webmanifest` already reference the correct files.
+Verified patterns in this build:
+
+- `viewport-fit=cover` + `env(safe-area-inset-*)` padding (notch / home indicator)
+- Minimum 44px touch targets on primary actions
+- `touch-action: manipulation` and tuned tap highlight
+- Responsive grid from 320px (small Android) through large desktop
+- PWA: add to home screen on iOS/Android with themed splash colors
+- Offline: cached shell via service worker after first load
+
+**Pre-launch phone test (5 min):**
+
+1. Tap Save contact → vCard downloads / opens Contacts
+2. Tap Share → native share sheet or clipboard fallback
+3. Switch EN ↔ AR → layout mirrors correctly
+4. Open QR modal → download works
+5. Tap avatar play chip (if video enabled) → modal opens/closes without background audio
+6. Add to Home Screen → icon and standalone mode look correct
+
+---
 
 ## Browser support
 
-Targets modern browsers. The codebase uses conservative APIs and includes clipboard fallback logic.
+Modern evergreen browsers:
 
-- Chrome / Edge: modern versions
-- Firefox: modern versions
-- Safari / iOS Safari: modern versions
+- Chrome / Edge (Android & desktop)
+- Safari / iOS Safari
+- Firefox
 
-## Security notes (static site)
+Clipboard and Web Share use progressive enhancement with fallbacks.
 
-This app has no backend and doesn’t render user-generated HTML, so the risk profile is low. For production hosting, add standard security headers (CSP, HSTS, etc.) at the CDN/host level.
+---
 
 ## License
 
-MIT is a reasonable default if you plan to open-source this project. If this is a client deliverable, license terms are typically defined in the client agreement.
+MIT — suitable for open-source portfolio use. Client deliverables may use separate commercial terms.
+
+---
+
+## Author
+
+Built as a freelancer portfolio showcase — premium static web card engineering with deployment, accessibility, and bilingual UX baked in.
