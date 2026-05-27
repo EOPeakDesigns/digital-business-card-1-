@@ -2,6 +2,12 @@
   "buildCommand": "npm run build",
   "outputDirectory": "public",
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/assets", "destination": "/", "permanent": true },
+    { "source": "/assets/", "destination": "/", "permanent": true },
+    { "source": "/assets/index.html", "destination": "/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
