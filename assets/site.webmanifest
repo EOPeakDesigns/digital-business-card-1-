@@ -2,6 +2,12 @@
   "name": "Alexander Martinez - Senior Sales Manager",
   "short_name": "Alex Martinez",
   "description": "Digital business card for Alexander Martinez, Senior Sales Manager with 20+ years experience.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#F4A32D",
+  "background_color": "#1B263B",
   "icons": [
     {
       "src": "favicon-16x16.png",
@@ -21,27 +27,39 @@
     {
       "src": "android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
-    },
-    {
-      "src": "favicon.ico",
-      "sizes": "any",
-      "type": "image/x-icon"
     }
   ],
-  "theme_color": "#F4A32D",
-  "background_color": "#1B263B",
-  "display": "standalone",
-  "start_url": "/",
-  "scope": "/"
+  "shortcuts": [
+    {
+      "name": "Call",
+      "short_name": "Call",
+      "url": "./?action=call",
+      "icons": [{ "src": "favicon-32x32.png", "sizes": "32x32", "type": "image/png" }]
+    },
+    {
+      "name": "Email",
+      "short_name": "Email",
+      "url": "./?action=email",
+      "icons": [{ "src": "favicon-32x32.png", "sizes": "32x32", "type": "image/png" }]
+    },
+    {
+      "name": "Website",
+      "short_name": "Web",
+      "url": "./?action=website",
+      "icons": [{ "src": "favicon-32x32.png", "sizes": "32x32", "type": "image/png" }]
+    }
+  ]
 }
