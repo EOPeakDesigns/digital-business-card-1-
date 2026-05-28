@@ -46,7 +46,10 @@ class DigitalBusinessCardApp {
       this.profileCard.reinit();
 
       this.qrModal = new QRModal();
-      this.videoModal = new VideoModal();
+      this.videoModal = new VideoModal({
+        profileVideo: document.getElementById('profileVideoFrame'),
+        profileVideoSource: null
+      });
       this.socialButtons = new SocialButtons();
 
       registerServiceWorker();

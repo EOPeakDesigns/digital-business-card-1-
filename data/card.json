@@ -48,7 +48,7 @@
   "featureVideo": {
     "enabled": true,
     "type": "embed",
-    "embedUrl": "https://vimeo.com/76979871",
+    "embedUrl": "https://www.youtube.com/embed/2Ri8f-wqonE?playsinline=1&rel=0&modestbranding=1",
     "localSrc": "",
     "poster": "assets/owner.webp"
   },

@@ -1,5 +1,5 @@
 /**
- * Owner showcase video modal (embed or local file from card.json).
+ * Owner showcase video modal — YouTube iframe (lazy) or legacy local <video>.
  */
 
 import { getCardData, t } from '../utils/cardData.js';
@@ -7,15 +7,19 @@ import { trapFocus, blurTrigger, lockBodyScroll } from '../utils/modal.js';
 import { isFeatureVideoEnabled, normalizeEmbedUrl } from '../utils/video.js';
 
 export class VideoModal {
-  constructor() {
+  /**
+   * @param {{ profileVideo?: HTMLIFrameElement|null, profileVideoSource?: null }} [options]
+   */
+  constructor(options = {}) {
     this.modal = document.getElementById('video-modal');
-    this.mediaHost = document.getElementById('video-media-host');
+    this.embedHost = this.modal?.querySelector('.video-embed');
+    this.profileVideo = options.profileVideo ?? document.getElementById('profileVideoFrame');
     this.closeButton = this.modal?.querySelector('.modal__close');
     this.backdrop = this.modal?.querySelector('.modal__backdrop');
     this.trigger = null;
     this.isOpen = false;
     this.releaseTrap = null;
-    this.activeMedia = null;
+    this.legacyVideo = null;
 
     this.handleClose = () => this.close();
     this.handleBackdrop = () => this.close();
@@ -40,6 +44,7 @@ export class VideoModal {
       return;
     }
 
+    this.syncEmbedDataSrc();
     this.closeButton?.addEventListener('click', this.handleClose);
     this.backdrop?.addEventListener('click', this.handleBackdrop);
     document.addEventListener('keydown', this.handleKeydown);
@@ -47,6 +52,24 @@ export class VideoModal {
     document.addEventListener('dbc:localechange', () => this.updateLabels());
 
     this.updateLabels();
+  }
+
+  /**
+   * Keep iframe data-src aligned with card.json (no network until modal opens).
+   */
+  syncEmbedDataSrc() {
+    const data = getCardData();
+    const video = data.featureVideo;
+    const useLocal = video?.type === 'local' && video.localSrc;
+
+    if (!this.profileVideo || useLocal) {
+      return;
+    }
+
+    const embedSrc = video.embedUrl ? normalizeEmbedUrl(video.embedUrl) : '';
+    if (embedSrc) {
+      this.profileVideo.setAttribute('data-src', embedSrc);
+    }
   }
 
   updateLabels() {
@@ -64,87 +87,124 @@ export class VideoModal {
       caption.textContent = t('videoCaption');
     }
 
+    if (this.profileVideo) {
+      this.profileVideo.title = t('videoTitle');
+    }
+
     this.closeButton?.setAttribute('aria-label', t('videoClose'));
   }
 
   /**
-   * Stop and remove all media to prevent background audio.
-   * @private
+   * Lazy-load YouTube iframe when modal is visible.
    */
-  teardownMedia() {
-    if (!this.mediaHost) {
+  loadEmbed() {
+    if (!this.profileVideo) {
       return;
     }
 
-    const iframe = this.mediaHost.querySelector('iframe');
-    const vid = this.mediaHost.querySelector('video');
+    const src = this.profileVideo.getAttribute('data-src');
+    if (src) {
+      this.profileVideo.src = src;
+    }
+  }
 
-    if (iframe) {
-      iframe.src = 'about:blank';
+  /**
+   * Unload iframe to stop playback and background audio.
+   */
+  unloadEmbed() {
+    if (!this.profileVideo) {
+      return;
     }
 
-    if (vid) {
-      try {
-        vid.pause();
-        vid.removeAttribute('src');
-        vid.load();
-      } catch {
-        /* ignore */
-      }
+    this.profileVideo.removeAttribute('src');
+  }
+
+  /**
+   * @private
+   */
+  teardownLegacyVideo() {
+    if (!this.legacyVideo) {
+      return;
     }
 
-    this.mediaHost.innerHTML = '';
-    this.activeMedia = null;
+    try {
+      this.legacyVideo.pause();
+      this.legacyVideo.removeAttribute('src');
+      this.legacyVideo.load();
+    } catch {
+      /* ignore */
+    }
+
+    this.legacyVideo.remove();
+    this.legacyVideo = null;
+  }
+
+  /**
+   * @private
+   */
+  mountLegacyVideo(src, poster) {
+    if (!this.embedHost) {
+      return;
+    }
+
+    this.teardownLegacyVideo();
+    this.unloadEmbed();
+
+    if (this.profileVideo) {
+      this.profileVideo.hidden = true;
+    }
+
+    const vid = document.createElement('video');
+    vid.src = src;
+    vid.controls = true;
+    vid.playsInline = true;
+    vid.setAttribute('playsinline', '');
+    vid.preload = 'metadata';
+    if (poster) {
+      vid.poster = poster;
+    }
+    vid.title = t('videoTitle');
+    this.embedHost.appendChild(vid);
+    this.legacyVideo = vid;
+  }
+
+  /**
+   * @private
+   */
+  showYouTubeEmbed() {
+    this.teardownLegacyVideo();
+
+    if (this.profileVideo) {
+      this.profileVideo.hidden = false;
+    }
   }
 
   open() {
     const data = getCardData();
     const video = data.featureVideo;
 
-    if (!isFeatureVideoEnabled(video) || !this.modal || !this.mediaHost) {
+    if (!isFeatureVideoEnabled(video) || !this.modal) {
       return;
     }
 
-    this.teardownMedia();
+    this.syncEmbedDataSrc();
+    this.updateLabels();
 
     const useLocal = video.type === 'local' && video.localSrc;
-    const embedSrc = !useLocal && video.embedUrl ? normalizeEmbedUrl(video.embedUrl) : '';
 
-    if (useLocal) {
-      const vid = document.createElement('video');
-      vid.src = video.localSrc;
-      vid.controls = true;
-      vid.playsInline = true;
-      vid.setAttribute('playsinline', '');
-      vid.preload = 'metadata';
-      if (video.poster) {
-        vid.poster = video.poster;
-      }
-      vid.title = t('videoTitle');
-      this.mediaHost.appendChild(vid);
-      this.activeMedia = vid;
-    } else if (embedSrc) {
-      const iframe = document.createElement('iframe');
-      iframe.src = embedSrc;
-      iframe.title = t('videoTitle');
-      iframe.setAttribute('allowfullscreen', '');
-      iframe.setAttribute(
-        'allow',
-        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-      );
-      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-      this.mediaHost.appendChild(iframe);
-      this.activeMedia = iframe;
-    } else {
-      return;
-    }
-
-    this.updateLabels();
     this.modal.hidden = false;
     this.modal.classList.add('active');
     this.modal.setAttribute('aria-hidden', 'false');
     this.isOpen = true;
     lockBodyScroll(true);
+
+    if (useLocal) {
+      this.mountLegacyVideo(video.localSrc, video.poster);
+    } else {
+      this.showYouTubeEmbed();
+      this.loadEmbed();
+    }
+
     this.releaseTrap = trapFocus(this.modal);
     this.closeButton?.focus();
     blurTrigger(this.trigger);
@@ -156,7 +216,12 @@ export class VideoModal {
     }
 
     this.modal.querySelector(':focus')?.blur();
-    this.teardownMedia();
+    this.unloadEmbed();
+    this.teardownLegacyVideo();
+
+    if (this.profileVideo) {
+      this.profileVideo.hidden = false;
+    }
 
     this.modal.classList.remove('active');
     this.modal.setAttribute('aria-hidden', 'true');

@@ -57,4 +57,5 @@ export function blurTrigger(trigger) {
  */
 export function lockBodyScroll(locked) {
   document.body.style.overflow = locked ? 'hidden' : '';
+  document.body.classList.toggle('modal-open', locked);
 }

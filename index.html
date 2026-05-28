@@ -83,7 +83,19 @@
         </button>
       </div>
       <div class="modal__body">
-        <div class="video-media" id="video-media-host"></div>
+        <div class="video-container">
+          <div class="video-embed">
+            <iframe
+              id="profileVideoFrame"
+              data-src="https://www.youtube.com/embed/2Ri8f-wqonE?playsinline=1&amp;rel=0&amp;modestbranding=1"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -103,6 +115,6 @@
     </div>
   </aside>
 
-  <script type="module" src="scripts/app.js"></script>
+  <script type="module" src="scripts/app.js?v=2"></script>
 </body>
 </html>
